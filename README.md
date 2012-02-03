@@ -59,8 +59,33 @@ apcClassMapLoader::create('prefix');
 
 ```
 
+Nested autoloading example:
 
 
+```php
+<?php
+use zero\prefixLoader;
+prefixLoader::getInstance()->register(array(
+'Twig' => 'Twig-1.5.1/zero-autoload.php',
+'Zend' => 'ZendFramework-1.11.11-minimal/zero-autoload.php',
+), __DIR__);
+```
 
+```php
+<?php
+// Twig-1.5.1/zero-autoload.php
+use zero\psr0Loader;
+psr0Loader::create(array(
+	'Twig' => 'Twig-1.5.1/lib',
+), __DIR__);
+```
 
+```php
+<?php
+// ZendFramework-1.11.11-minimal/zero-autoload.php
+use zero\psr0Loader;
+psr0Loader::create(array(
+	'Zend' => 'library',
+), __DIR__);
+```
 
